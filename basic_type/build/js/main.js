@@ -26,3 +26,43 @@ let dataObj = {};
 console.log(typeof dataObj);
 myObject = [];
 console.log(typeof myObject);
+let myObj = {
+    name: "Kate",
+    age: 22,
+    siblings: ["Faith", "Sam"],
+    married: true,
+};
+myObj.name = "Gift";
+// myObj.age = '66'  ❌
+myObj.siblings[0] = "Cas";
+let randomSchool = {
+    name: "St. Anthony",
+    noOfClasses: 8,
+    isRegistered: true,
+};
+let emcSchool = {
+    name: "EMC",
+    noOfClasses: 12,
+    isRegistered: true,
+};
+let smithCollege = {
+    name: "Smit",
+    noOfClasses: 8,
+    noOfTeacher: 22,
+    isRegistered: true,
+};
+smithCollege = randomSchool;
+let dominicFamily = {
+    name: "Dominic",
+    familyNo: 6,
+    children: ["Kate", "Faith", "Sam", "Gift"],
+    parent: {
+        mother: "Blessing",
+        father: "David",
+    },
+};
+const familySchool = (School, Family) => {
+    var _a;
+    return `The family of ${(_a = Family.name) === null || _a === void 0 ? void 0 : _a.toUpperCase()} has ${Family.children.length} children who attends ${School.name} and has ${School.noOfTeacher} taking them`;
+};
+console.log(familySchool(randomSchool, dominicFamily));
