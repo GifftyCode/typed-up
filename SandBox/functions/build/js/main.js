@@ -34,3 +34,12 @@ const subAll = (a = 24, b, c = 7) => {
 };
 logMsg(subAll(12, 3, 1));
 logMsg(subAll(undefined, 3));
+// Rest parameters
+const logData = (...nums) => {
+    return nums.reduce((prev, curr) => prev + curr);
+};
+logMsg(logData(2, 4, 7, 9, 1, 0, 12));
+const logData1 = (a, ...nums) => {
+    return nums.reduce((prev, curr) => prev + curr);
+};
+logMsg(logData(2, 4, 7, 9, 1, 0, 12));

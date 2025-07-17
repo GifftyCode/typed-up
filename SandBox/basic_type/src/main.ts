@@ -146,3 +146,36 @@ console.log(weatherForcast.coordinates);
 let sudoName: "Gifftybabe";
 
 let friends: "Sammy" | "Guzbyte";
+
+// never type -- Basically gotten from functions that throws error on purpose or a function that returns an infinite loop
+
+const throwError = (errMssg: string) => {
+  throw new Error(errMssg);
+};
+
+// const infinitFxn = () => {
+//   let i = 1
+//   while(true) {
+//     i++
+//   }
+// }
+
+// custom type guard
+
+const isNumber = (value: any): boolean => {
+  return typeof value === "number" ? true : false;
+};
+
+// To use never type
+
+const stringOrNumber = (value: any): string => {
+  if (typeof value === "string") return "it's a STRING";
+  if (typeof value === "number") return "number";
+
+  return throwError(
+    "The function requires an explicitly return statement of undefined."
+  );
+};
+
+// unknown type - also known as false or double casting and can't be use anywhere except we intentionally wants to overrule typescript
+10 as unknown as string;

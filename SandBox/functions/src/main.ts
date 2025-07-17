@@ -51,3 +51,15 @@ const subAll = (a: number = 24, b: number, c: number = 7) => {
 
 logMsg(subAll(12, 3, 1));
 logMsg(subAll(undefined, 3));
+
+// Rest parameters
+
+const logData = (...nums: number[]) => {
+  return nums.reduce((prev, curr) => prev + curr);
+};
+logMsg(logData(2, 4, 7, 9, 1, 0, 12));
+
+const logData1 = (a: number, ...nums: number[]) => {
+  return nums.reduce((prev, curr) => prev + curr);
+};
+logMsg(logData(2, 4, 7, 9, 1, 0, 12));
