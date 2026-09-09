@@ -91,3 +91,88 @@ creds = {
   password: "123",
   email: "test@example.com",
 };
+
+// interface keyword can be explicitly used for object types and sometimes for function types too but we can use it on a class as an implementation but we will strictly add all the interafce parameters to the class.
+
+// class AuthCredentials implements Credentials {
+//     email: string;
+//     password: string;
+//     userName: string
+// }
+
+function login(credentials: Credentials) {}
+
+login(creds);
+// login(new AuthCredentials())
+
+// Merging types
+type Admin = {
+  permission: string[];
+};
+type AppUser = {
+  userName: string;
+};
+// type AppAdmin = Admin | AppUser // gives us either one of them
+type AppAdmin = Admin & AppUser; // combines the two type as one
+
+let admin: AppAdmin;
+admin = {
+  permission: ["login"],
+  userName: "Max",
+};
+
+interface SuperAdmin {
+  permission: string[];
+}
+interface SuperUser {
+  userName: string;
+}
+
+interface SuperAppAdmin extends SuperAdmin, SuperUser {}
+
+// Literal types: enforcing only the types given to a variable:
+
+type Role = "admin" | "user" | "editor";
+let role: Role;
+
+function performAction(action: string, role: Role) {
+  if (role === "admin") {
+    // ...
+  }
+}
+
+// Generic types
+let roles = Array<Role>;
+// Generic type placeholder: used when we don't know what type our variable will be => custom generic type and it if flexible.
+
+// definition
+type Datatorage<T> = {
+  storage: T[];
+  add: (data: T) => void;
+};
+
+// Usage
+const textStorage: Datatorage<string> = {
+  storage: [],
+  add(data) {
+    this.storage.push(data);
+  },
+};
+
+const userStorage: Datatorage<User> = {
+  storage: [],
+  add(user) {},
+};
+
+// genertic function type:
+function merge<T, U>(a: T, b: U) {
+  return {
+    ...a,
+    ...b,
+  };
+}
+
+const newUser = merge<{ name: string }, { age: number }>(
+  { name: "Gift" },
+  { age: 25 },
+);
