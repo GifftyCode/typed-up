@@ -1,34 +1,26 @@
-// import Input from "./components/Input";
-import { useRef } from "react";
-// import Button from "./components/Button2";
-// import Container from "./components/Container";
+import Form, { FormHandle } from "./components/Form";
+import Button from "./components/Button2";
 import Input from "./components/InputRef";
+import { useRef } from "react";
 
 function App() {
-  const input = useRef<HTMLInputElement>(null);
-  return (
-    // <main>
-    //   <div>
-    //     <Input label="Your Name" id="name" type="text" />
-    //     <Input label="Your Age" id="age" type="number" />
-    //   </div>
-    //   <p>
-    //     <Button el="button">A Button</Button>
-    //   </p>
-    //   <p>
-    //     <Button el="anchor" href="https://google.com">
-    //       A Link
-    //     </Button>
-    //   </p>
-    // </main>
-    // <main>
-    //    <Container as={Button} onClick={() => {}} type="button">
-    //   Click me
-    //  </Container>
-    // </main>
+  const customForm = useRef<FormHandle>(null);
 
+  function handleSave(data: unknown) {
+    const extractedData = data as { name: string; age: string };
+    console.log(extractedData);
+    customForm.current?.clear();
+  }
+
+  return (
     <main>
-      <Input label="Test" id="test" ref={input} />
+      <Form onSave={handleSave} ref={customForm}>
+        <Input type="text" label="Name" id="name" />
+        <Input type="text" label="Age" id="age" />
+        <p>
+          <Button>Save</Button>
+        </p>
+      </Form>
     </main>
   );
 }
